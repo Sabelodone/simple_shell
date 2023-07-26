@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * path_finder - Function allocates path to the input.
+ * search_path - Function allocates path to the input.
  * @str: The user inpute.
  * Return: The actual path of the inpute
  */

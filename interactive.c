@@ -23,25 +23,23 @@ void interactive(char **av)
 		_chars = getline(&input, &buffer, stdin);
 		if (_chars < 0 || input == NULL)
 			break;
-
-		input[strcspn(input, "\n")] = '\0';
+		if (input[_chars - 1] == '\n')
+		{
+			input[_chars - 1] = '\0';
+			_chars--;
+		}
 
 		argv[0] = strtok(input, DELIM);
-
 		for (i = 0; argv[i] != NULL; i++)
 		{
 			argv[++i] = strtok(NULL, DELIM);
 		}
-
 		/*display_env(argv);*/
-
 		if (exe(argv, av) == -1)
 		{
 			free(input);
 			exit(1);
 		}
-		/*free(input);i*/
-		/*input = NULL;*/
 	}
 	free(input);
 	input = NULL;
