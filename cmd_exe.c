@@ -16,24 +16,13 @@ pid_t exe(char **argv, char **av)
 
 	if (id == -1)
 		return (id);
-
 	if (id == 0)
 	{
-		/*if (strcmp(argv[0], ext) == 0)
-			shell_exit(id, argv);*/
-		/*else*/
-		/*{*/
-			/*th_cmd = search_path(argv[0]);
-			if (path_cmd == NULL)
-			{
-				perror(av[0]);
-				exit(1);
-			}*/
-			if (execve(argv[0],/*path_cmd*/argv, NULL) == -1)
-			{
-				perror(av[0]);
-				exit(1);
-			}
+		if (execve(argv[0],/*path_cmd*/argv, NULL) == -1)
+		{
+			perror(av[0]);
+			exit(1);
+		}
 		/*}*/
 		/*free(path_cmd);*/
 		/*path_cmd = NULL;*/
@@ -42,5 +31,5 @@ pid_t exe(char **argv, char **av)
 	{
 		wait(&status);
 	}
-	 return (id);
+	return (id);
 }
