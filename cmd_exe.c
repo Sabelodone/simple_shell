@@ -10,7 +10,7 @@
 
 pid_t exe(char **argv, char **av)
 {
-	/*char *path_cmd, *ext = "exit";*/
+	char *path_cmd, *ext = "exit";
 	int status = 0;
 	pid_t id = fork();
 
@@ -18,14 +18,24 @@ pid_t exe(char **argv, char **av)
 		return (id);
 	if (id == 0)
 	{
-		if (execve(argv[0],/*path_cmd*/argv, NULL) == -1)
+		if (strcmp(argv[0], ext) == 0)
+			shell_exit(id, argv);
+		else
 		{
-			perror(av[0]);
-			exit(1);
+			path_cmd = search_path(argv[0]);
+			if (path_cmd == NULL)
+			{
+				perror(av[0]);
+				exit(1);
+			}
+			if (execve(path_cmd, argv, NULL) == -1)
+			{
+				perror(av[0]);
+				exit(1);
+			}
 		}
-		/*}*/
-		/*free(path_cmd);*/
-		/*path_cmd = NULL;*/
+		free(path_cmd);
+		path_cmd = NULL;
 	}
 	else
 	{
