@@ -8,14 +8,16 @@
 void display_env(char *av[])
 {
 	char **env = environ;
+	int i = 0;
 
 	if (strcmp(av[0], "env") == 0)
 	{
-		while (*env)
+		while (i  < 12)
 		{
 			if (*env)
-				puts(*env);
+				puts(env[i]);
 			env++;
+			i++;
 		}
 
 	} else if (strcmp(av[0], "exit") == 0)

@@ -34,7 +34,7 @@ void interactive(char **av)
 		{
 			argv[++i] = strtok(NULL, DELIM);
 		}
-		/*display_env(argv);*/
+		display_env(argv);
 		if (exe(argv, av) == -1)
 		{
 			free(input);
