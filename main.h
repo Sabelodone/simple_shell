@@ -24,7 +24,7 @@ void non_interactive(void);
 void interactive(char **av);
 pid_t exe(char **argv, char **av);
 char *search_path(const char *input);
-void shell_exit(pid_t pid, char **av);
+void shell_exit(char **av);
 void display_env(char *av[]);
 ssize_t _getline(char *str, size_t index, int stream);
 char *_memcpy(char *dest, char *src, unsigned int n);

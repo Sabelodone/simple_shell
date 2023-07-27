@@ -2,7 +2,6 @@
 
 /**
  * shell_exit - Wait for a child process to terminate and handle exit status.
- * @pid: The process ID of the child process.
  * @av: The argument vector containing the program name and its arguments.
  *
  * Description: Waits for the child process with the given PID to terminate
@@ -12,17 +11,16 @@
  *              the parent process.
  */
 
-void shell_exit(pid_t pid, char **av)
+void shell_exit(char **av)
 {
-	int state, exit_state;
+	int s;
 
-	waitpid(pid, &state, 0);
-	if (WIFEXITED(state))
+	if (av[1])
 	{
-		exit_state = WEXITSTATUS(state);
-		if (exit_state == 0 && av[0] == NULL)
-		{
-			exit(0);
-		}
+		s = atoi(av[1]);
+		if (s >= 0)
+			exit(s);
+		perror("Exit");
 	}
+	exit(0);
 }

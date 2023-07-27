@@ -34,8 +34,7 @@ void interactive(char **av)
 		{
 			argv[++i] = strtok(NULL, DELIM);
 		}
-		if (strcmp(av[0], "exit") == 0)
-			break;
+		/*shell_exit(argv);*/
 		display_env(argv);
 		if (exe(argv, av) == -1)
 		{
